@@ -43,6 +43,14 @@
 				<configuration>
 					<repository>${docker.image.prefix}/${project.artifactId}</repository>
 				</configuration>
+				<!--  executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions -->
 			</plugin>
 		</plugins>
 	</build>
