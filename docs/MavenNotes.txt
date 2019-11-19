@@ -1,0 +1,19 @@
+Maven note:
+	A life circle => consists of Phases. A phase is as stage in life circle
+	A phase => consists of goals.
+	A plugin is a group of goals. These goals may belong to difference phases
+	
+	When we run a phase-N, will execute all preceding of phase-N and phase-N itself.
+	When a phase is excuted, all goals bound to this phase are executed in order.
+	
+	
+Maven commands:
+	1. Execute a phase
+		mvn <phase-N> <= this will execute all preceding of phase-N and phase-N itself  [phase-0, phase-1,...phase-N]. All goals in phase-i is exceted in order.
+		(List of phase: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference)
+	2. List all goals in phase: 
+		mvn help:describe -Dcmd=PHASENAME
+	3. Run a goal: 
+		mvn <PLUGIN>:<GOAL>
+	4. List all goal in a plugin: 
+		mvn <PLUGIN>:help
