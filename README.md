@@ -6,9 +6,11 @@ I. Introduction:
 			b. Listen on a Kafka queue.
 			c. Elastic search.
 		1.2. "InterApp" works as below:
-			a. Reading messages from Kafka queue.
-			b. Write message content to MySql
-			c. Provide a functionality for searching stored messages.
+			a. Provide a REST API for sending "feeding back" message. Name this as "FeedingBack" API.
+			b. Provide a REST API for managing "feeding back" messages. These API are secured and need to authenticate when calling.
+			c. "FeedingBack" API put message to Kafka topic. Use "FeedingBackTopic" as name of Kafka topic
+			d. Kafka consumer read messages from "FeedingBackTopic" Kafka topic and write content to MySQL DB.
+			e. Provide a REST API for searching stored messages. Name this as "Searching" API
 	2. Create Docker image for running "InterApp".
 	3. Start two containers of "InterApp" docker Image. These two containers listen on 8080 and 8081 ports.
 	4. Configure "Nginx" as a proxy server to pass request to two instances of InterApp (8080 and 8081 ports) 

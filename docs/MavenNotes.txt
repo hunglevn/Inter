@@ -4,7 +4,7 @@ Maven note:
 	A plugin is a group of goals. These goals may belong to difference phases
 	
 	When we run a phase-N, will execute all preceding of phase-N and phase-N itself.
-	When a phase is excuted, all goals bound to this phase are executed in order.
+	When a phase is executed, all goals bound to this phase are executed in order.
 	
 	
 Maven commands:
