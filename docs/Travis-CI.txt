@@ -1,0 +1,10 @@
+I. Setting up CI for repository:
+	1. Create an accounts in "travis-ci.com" by using GitHub account.
+	2. Goto Setting of "travis-ci.com", activate CI and select a repository for running CI.
+	3. Create ".travis.yml" under root of repository.
+
+II. Flow to run CI with Travis-ci:
+	1. Commit code and push to a branch.
+	2. Create pull request.
+	3. Goto console of GitHub see check list of pull request verification.
+	4. If all checks are passed, it is good for merging pull request (by default, all unit test under project are executed.)
