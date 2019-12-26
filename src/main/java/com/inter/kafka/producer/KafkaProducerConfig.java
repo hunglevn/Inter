@@ -15,6 +15,12 @@ import com.inter.kafka.bean.Feedback;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Configuration of kafka producers.
+ *  
+ * @author kevin
+ *
+ */
 @Configuration
 public class KafkaProducerConfig {
 

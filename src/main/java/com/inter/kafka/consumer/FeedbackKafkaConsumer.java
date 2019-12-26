@@ -6,6 +6,13 @@ import org.springframework.stereotype.Service;
 
 import com.inter.kafka.bean.Feedback;
 
+/**
+ * Listen incoming feedback messages.
+ * Store received message into MySQL DB
+ * 
+ * @author Kevin
+ *
+ */
 @Service
 public class FeedbackKafkaConsumer implements IFeedbackKafkaConsumer {
     @Value(value = "${feedback.topic.groupid}")

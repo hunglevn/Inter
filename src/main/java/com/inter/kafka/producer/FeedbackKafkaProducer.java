@@ -10,6 +10,12 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import com.inter.config.AppConfig;
 import com.inter.kafka.bean.Feedback;
 
+/**
+ * Produce message on "FeedbackTopic" kafka topic
+ * 
+ * @author Kevin
+ *
+ */
 @Service
 public class FeedbackKafkaProducer implements IFeedbackKafkaProducer {
 	@Autowired

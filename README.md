@@ -35,5 +35,9 @@ III. Deploy services:
 			+ http://192.168.14.93/app2
 			
 IV. Inter API:
-curl -i -X GET http://localhost:8080//api/feedback/send?message=hello
-curl -i -X POST -d username=admin -d password=adminPass -c /opt/cookies.txt 
+	1. Send feedback message:
+		curl -i -X GET http://localhost:8080/api/feedback/send?message=hello
+	2. Authentication:
+		curl -i -X POST http://localhost:8080/login -d username=kevin -d password=123456 -c D:/Temp/cookies.txt
+	2. Search messages:
+		curl -i -X GET http://localhost:8080/api/admin/feedback/search?keyword=hello -b D:/Temp/cookies.txt

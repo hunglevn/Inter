@@ -1,5 +1,10 @@
 package com.inter.webservice.endpoint.admin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.inter.webservice.endpoint.ClientAPI;
+
 /**
  * API for administrator.
  * Need to authentication with "ADMIN" role.
@@ -10,5 +15,5 @@ package com.inter.webservice.endpoint.admin;
  *
  */
 public class AdminAPI {
-
+	protected Logger logger = LoggerFactory.getLogger(ClientAPI.class);
 }
