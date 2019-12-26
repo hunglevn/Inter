@@ -2,13 +2,17 @@ package com.inter.kafka.consumer;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
-public class FeedbackKafkaConsumer {
+import com.inter.kafka.bean.Feedback;
+
+@Service
+public class FeedbackKafkaConsumer implements IFeedbackKafkaConsumer {
     @Value(value = "${feedback.topic.groupid}")
     private String feedbackTopicGroupid;
-    
-	@KafkaListener(topics = "${feedback.topic.name}", groupId = "${feedback.topic.groupid}", containerFactory = "feedbackKafkaListenerContainerFactory")
-    public void listenFeedbackTopic(String message) {
-        System.out.println(String.format("Received Messasge in group '%s': %s", feedbackTopicGroupid, message));
+
+    @KafkaListener(topics = "${feedback.topic.name}", groupId = "${feedback.topic.groupid}", containerFactory = "feedbackKafkaListenerContainerFactory")
+    public void listenFeedbackTopic(Feedback feedback) {
+        System.out.println(String.format("Received Messasge in group '%s': %s", feedbackTopicGroupid, feedback.toString()));
     }
 }

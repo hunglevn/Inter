@@ -1,3 +1,4 @@
 1. Research: git fork branch rebase
 2. Research webhooks
 3. Enroll "cloud application" Coursera
+4. Depth research on Apache Kafka 

@@ -1,40 +1,32 @@
 package com.inter.kafka.producer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import com.inter.config.AppConfig;
 import com.inter.kafka.bean.Feedback;
 
-public class FeedbackKafkaProducer {
-
+@Service
+public class FeedbackKafkaProducer implements IFeedbackKafkaProducer {
+	@Autowired
+    private AppConfig appConfig;
+	
     @Autowired
     private KafkaTemplate<String, Feedback> feedbackKafkaTemplate;
 
-    @Value(value = "${message.topic.name}")
-    private String topicName;
-
-    @Value(value = "${partitioned.topic.name}")
-    private String partionedTopicName;
-
-    @Value(value = "${filtered.topic.name}")
-    private String filteredTopicName;
-
-    @Value(value = "${greeting.topic.name}")
-    private String greetingTopicName;
-
     public void sendMessage(String title, String message) {
         Feedback feedback = new Feedback(title, message);
-        ListenableFuture<SendResult<String, Feedback>> future = feedbackKafkaTemplate.send(topicName, feedback);
+        ListenableFuture<SendResult<String, Feedback>> future = feedbackKafkaTemplate.send(appConfig.getFeedbackTopicName(), feedback);
         
         future.addCallback(new ListenableFutureCallback<SendResult<String, Feedback>>() {
 
             @Override
             public void onSuccess(SendResult<String, Feedback> result) {
-                System.out.println("Sent message=[" + message + "] with offset=[" + result.getRecordMetadata().offset() + "]");
+                System.out.println("Sent message=[" + result.getProducerRecord().value().toString() + "] with offset=[" + result.getRecordMetadata().offset() + "]");
             }
             
             @Override

@@ -33,3 +33,7 @@ III. Deploy services:
 		b. check if Nginx proxy server is up and running:
 			+ http://192.168.14.93/app1
 			+ http://192.168.14.93/app2
+			
+IV. Inter API:
+curl -i -X GET http://localhost:8080//api/feedback/send?message=hello
+curl -i -X POST -d username=admin -d password=adminPass -c /opt/cookies.txt 

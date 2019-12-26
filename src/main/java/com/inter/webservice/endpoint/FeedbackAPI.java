@@ -1,8 +1,11 @@
 package com.inter.webservice.endpoint;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.inter.kafka.producer.IFeedbackKafkaProducer;
 
 /**
  * 
@@ -12,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/feedback")
 public class FeedbackAPI extends ClientAPI implements IFeedbackAPI {
-	
+	@Autowired
+	private IFeedbackKafkaProducer feedbackKafkaProducer;
 	/**
 	 * Read feeding back message from posted data.
 	 * Put received message to "FeedingbackTopic" Kafka topic.
@@ -23,7 +27,9 @@ public class FeedbackAPI extends ClientAPI implements IFeedbackAPI {
 	@Override
 	@RequestMapping("send")
 	public String send(@RequestParam("message")String message) {
-		System.out.println("Receive: " + message);
+		logger.info("Start put message to queue.");
+		feedbackKafkaProducer.sendMessage("Feedback", message);
+		logger.info("Finished put message to queue.");
 		return message;
 	}
 
