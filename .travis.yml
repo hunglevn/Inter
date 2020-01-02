@@ -1,1 +1,9 @@
 language: java
+services:
+  - docker
+before_install:
+  - docker pull openjdk:8-jdk-alpine
+  - docker build --build-arg JAR_FILE=target/Inter-0.0.1.jar --tag=interapp .
+
+script:
+  - sudo docker run --rm --name=InterApp1 -p 8080:8080 -d interapp

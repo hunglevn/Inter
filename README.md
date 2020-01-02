@@ -26,8 +26,8 @@ III. Deploy services:
 		b. Build docker image:
 			sudo docker build --build-arg JAR_FILE=target/Inter-0.0.1.jar --tag=interapp .
 		c. Running two instances of "inter" app on two docker and listens on two ports 8080, 8081
-			sudo docker run --name=InterApp1 -p 8080:8080 -d interapp
-			sudo docker run --name=InterApp2 -p 8081:8080 -d interapp
+			sudo docker run --rm --name=InterApp1 -p 8080:8080 -d interapp
+			sudo docker run --rm --name=InterApp2 -p 8081:8080 -d interapp
 	2. Deploy "Nginx" proxy server as Docker container:
 		a. Follow steps in "/Nginx/README.md" to build/deploy "Nginx" proxy server as Docker container.
 		b. check if Nginx proxy server is up and running:
