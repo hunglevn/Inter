@@ -1,7 +1,6 @@
 
-I. Introduction:
-=============
-Develop a very simple Spring Boot App. Name this app as "InterApp".  Integrate frameworks for bootstrap new projects.
+A very simple Spring Boot App. Name this app as "InterApp".  Integrate frameworks for bootstrap new projects.
+
 ### 1. This "InterApp" is configured with these services:
 - MySQL (Run on Docker container).
 - Listen on a Kafka queue (Kafka server runs on Docker container).
