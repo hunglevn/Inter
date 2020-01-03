@@ -1,25 +1,34 @@
 
 I. Introduction:
-	1. Develop a very simple Spring Boot App. Name this app as "InterApp". 
-		1.1. This "InterApp" is configured with these services:
-			a. MySQL (Running on Docker container).
-			b. Listen on a Kafka queue.
-			c. Elastic search.
-		1.2. "InterApp" works as below:
-			a. Provide a REST API for sending "feeding back" message. Name this as "FeedingBack" API.
-			b. Provide a REST API for managing "feeding back" messages. These API are secured and need to authenticate when calling.
-			c. "FeedingBack" API put message to Kafka topic. Use "FeedingBackTopic" as name of Kafka topic
-			d. Kafka consumer read messages from "FeedingBackTopic" Kafka topic and write content to MySQL DB.
-			e. Provide a REST API for searching stored messages. Name this as "Searching" API
-	2. Create Docker image for running "InterApp".
-	3. Start two containers of "InterApp" docker Image. These two containers listen on 8080 and 8081 ports.
-	4. Configure "Nginx" as a proxy server to pass request to two instances of InterApp (8080 and 8081 ports) 
-	5. Create Docker image for "Nginx" proxy server. Run instance of "Nginx" proxy server, listen on port#80
-	
-II. Checkout source of "Inter" project.
+=============
+Develop a very simple Spring Boot App. Name this app as "InterApp".  Integrate frameworks for bootstrap new projects.
+### 1. This "InterApp" is configured with these services:
+- MySQL (Run on Docker container).
+- Listen on a Kafka queue (Kafka server runs on Docker container).
+- Elastic search.
+- Spring boot app (Run on Docker container).
+
+### 2. "InterApp" works as below:
+- Provide a REST API for sending "feeding back" message. Name this as "FeedingBack" API.
+- Provide a REST API for managing "feeding back" messages. These API are secured and need to authenticate when calling.
+- "FeedingBack" API put message to Kafka topic. Use "FeedingBackTopic" as name of Kafka topic
+- Kafka consumer read messages from "FeedingBackTopic" Kafka topic and write content to MySQL DB.
+- Provide a REST API for searching stored messages. Name this as "Searching" API
+
+### 3. Infrustrature of Inter App:
+#### 3.1 Create Docker container for these services:
+- Create Docker image for running "InterApp" Spring Boot.
+- Start two containers of "InterApp" docker Image. These two containers listen on 8080 and 8081 ports.
+- Configure "Nginx" as a proxy server to pass request to two instances of InterApp Spring Boot (8080 and 8081 ports)  .
+- Create Docker image for "Nginx" proxy server. Run instance of "Nginx" proxy server, listen on port#80
+- Create Docker image for "Nginx" Kafka server.
+- Create Docker image for "MySQL" DB server.
+- Configure Travis-ci for CI/CD
+
+#### 3.2  Checkout source of "Inter" project.
 	git clone https://github.com/hunglevn/Inter.git
 
-III. Deploy services:
+### 4. Deploy services of Inter App:
 	1. Deploy two instances of "InterApp" on Docker containers:
 		a. Package and run application:
 			mvn package && java -jar target/Inter-0.0.1.jar
@@ -34,7 +43,7 @@ III. Deploy services:
 			+ http://192.168.14.93/app1
 			+ http://192.168.14.93/app2
 			
-IV. Inter API:
+### 5. Inter API:
 	1. Send feedback message:
 		curl -i -X GET http://localhost:8080/api/feedback/send?message=hello
 	2. Authentication:
