@@ -4,7 +4,11 @@ services:
 before_install:
   - mvn package
   - docker pull openjdk:8-jdk-alpine
+install:
   - docker build --build-arg JAR_FILE=target/Inter-0.0.1.jar --tag=interapp .
 
 script:
   - sudo docker run --rm --name=InterApp1 -p 8080:8080 -d interapp
+
+after_success:
+  - sudo docker tag interapp interapp:$(git rev-parse HEAD)
