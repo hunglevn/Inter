@@ -11,7 +11,7 @@ install:
   - docker build --build-arg JAR_FILE=target/Inter-0.0.1.jar --tag=interapp
 
 script:
-  - sudo docker run --rm --name=InterApp_$TARGET_ENV -p 8080:8080 -d interapp
+  - sudo docker run --rm --name=InterApp -p 8080:8080 -d interapp
 
 after_success:
   - set -x -v;
